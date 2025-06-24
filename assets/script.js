@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const productSlug = "yx1-earphones"; // This should ideally come from the URL or a global variable
-                                         // For this example, we'll hardcode it to YX1 Earphones
+    // Helper function to correct asset paths by inserting '/images/'
+    // This function should be defined once, accessible to all rendering functions.
+    const correctAssetPath = (path) => {
+        // Check if the path starts with /assets/ but doesn't already contain /assets/images/
+        if (path && path.startsWith('/assets/') && !path.startsWith('/assets/images/')) {
+            return path.replace('/assets/', '/assets/images/');
+        }
+        return path; // Return original path if no correction is needed or already corrected
+    };
+
+    // Ideal: Get productSlug from URL query parameter (e.g., product.html?slug=yx1-earphones)
+    const urlParams = new URLSearchParams(window.location.search);
+    const productSlug = urlParams.get('slug') || "yx1-earphones"; // Fallback to YX1 if no slug in URL
 
     fetch('./data.json')
         .then(response => response.json())
@@ -11,7 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderProductImages(product.gallery);
                 renderYouMayAlsoLike(product.others);
             } else {
-                console.error('Product not found.');
+                console.error(`Product with slug "${productSlug}" not found.`);
+                // Optionally redirect to a 404 page or category page
+                // window.location.href = '/category.html';
             }
         })
         .catch(error => console.error('Error fetching product data:', error));
@@ -23,10 +36,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // Product Image
             const productImagePicture = productDetailHero.querySelector('.product-detail-image picture');
             if (productImagePicture) {
+                // Applying correctAssetPath here
                 productImagePicture.innerHTML = `
-                    <source media="(min-width: 1024px)" srcset="${product.image.desktop}">
-                    <source media="(min-width: 768px)" srcset="${product.image.tablet}">
-                    <img src="${product.image.mobile}" alt="${product.name}">
+                    <source media="(min-width: 1024px)" srcset="${correctAssetPath(product.image.desktop)}">
+                    <source media="(min-width: 768px)" srcset="${correctAssetPath(product.image.tablet)}">
+                    <img src="${correctAssetPath(product.image.mobile)}" alt="${product.name}">
                 `;
             }
 
@@ -34,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const productDetailInfo = productDetailHero.querySelector('.product-detail-info');
             if (productDetailInfo) {
                 if (product.new) {
-                    const newProductTag = productDetailInfo.querySelector('.new-product-tag');
+                    let newProductTag = productDetailInfo.querySelector('.new-product-tag');
                     if (!newProductTag) {
                         const span = document.createElement('span');
                         span.classList.add('new-product-tag');
@@ -60,11 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Product Features and Includes Section
-        const featuresContent = document.querySelector('.features-content p');
-        if (featuresContent) {
+        const featuresContentElement = document.querySelector('.features-content p');
+        if (featuresContentElement) {
             // Split the features string by '\n\n' to create paragraphs
             const featureParagraphs = product.features.split('\n\n').map(p => `<p>${p}</p>`).join('');
-            featuresContent.outerHTML = `<h2>Features</h2>${featureParagraphs}`;
+            // Replace the <p> tag with the new structure including an <h2>
+            featuresContentElement.outerHTML = `<div class="features-content"><h2>Features</h2>${featureParagraphs}</div>`;
         }
 
         const inTheBoxList = document.querySelector('.in-the-box-content ul');
@@ -78,28 +93,31 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProductImages(gallery) {
         const galleryImageSmall1 = document.querySelector('.gallery-image-small-1 picture');
         if (galleryImageSmall1) {
+            // Applying correctAssetPath here
             galleryImageSmall1.innerHTML = `
-                <source media="(min-width: 1024px)" srcset="${gallery.first.desktop}">
-                <source media="(min-width: 768px)" srcset="${gallery.first.tablet}">
-                <img src="${gallery.first.mobile}" alt="Gallery Image 1">
+                <source media="(min-width: 1024px)" srcset="${correctAssetPath(gallery.first.desktop)}">
+                <source media="(min-width: 768px)" srcset="${correctAssetPath(gallery.first.tablet)}">
+                <img src="${correctAssetPath(gallery.first.mobile)}" alt="Gallery Image 1">
             `;
         }
 
         const galleryImageSmall2 = document.querySelector('.gallery-image-small-2 picture');
         if (galleryImageSmall2) {
+            // Applying correctAssetPath here
             galleryImageSmall2.innerHTML = `
-                <source media="(min-width: 1024px)" srcset="${gallery.second.desktop}">
-                <source media="(min-width: 768px)" srcset="${gallery.second.tablet}">
-                <img src="${gallery.second.mobile}" alt="Gallery Image 2">
+                <source media="(min-width: 1024px)" srcset="${correctAssetPath(gallery.second.desktop)}">
+                <source media="(min-width: 768px)" srcset="${correctAssetPath(gallery.second.tablet)}">
+                <img src="${correctAssetPath(gallery.second.mobile)}" alt="Gallery Image 2">
             `;
         }
 
         const galleryImageLarge = document.querySelector('.gallery-image-large picture');
         if (galleryImageLarge) {
+            // Applying correctAssetPath here (and fixing the typo from gallery.third.third to gallery.third.mobile)
             galleryImageLarge.innerHTML = `
-                <source media="(min-width: 1024px)" srcset="${gallery.third.desktop}">
-                <source media="(min-width: 768px)" srcset="${gallery.third.tablet}">
-                <img src="${gallery.third.third}" alt="Gallery Image 3">
+                <source media="(min-width: 1024px)" srcset="${correctAssetPath(gallery.third.desktop)}">
+                <source media="(min-width: 768px)" srcset="${correctAssetPath(gallery.third.tablet)}">
+                <img src="${correctAssetPath(gallery.third.mobile)}" alt="Gallery Image 3">
             `;
         }
     }
@@ -111,13 +129,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="related-product-item">
                     <div class="related-product-image">
                         <picture>
-                            <source media="(min-width: 1024px)" srcset="${item.image.desktop}">
-                            <source media="(min-width: 768px)" srcset="${item.image.tablet}">
-                            <img src="${item.image.mobile}" alt="${item.name}">
+                            <source media="(min-width: 1024px)" srcset="${correctAssetPath(item.image.desktop)}">
+                            <source media="(min-width: 768px)" srcset="${correctAssetPath(item.image.tablet)}">
+                            <img src="${correctAssetPath(item.image.mobile)}" alt="${item.name}">
                         </picture>
                     </div>
                     <h3>${item.name}</h3>
-                    <a href="/product/${item.slug}" class="button button-primary">SEE PRODUCT</a>
+                    <a href="/product.html?slug=${item.slug}" class="button button-primary">SEE PRODUCT</a>
                 </div>
             `).join('');
         }
