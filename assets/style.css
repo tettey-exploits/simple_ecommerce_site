@@ -1,0 +1,1105 @@
+/*
+    -------------------------------------------
+    01. Base Styles & Variables
+    -------------------------------------------
+*/
+:root {
+    /* Colors */
+    --clr-primary-orange: #D87D4A;
+    --clr-primary-orange-light: #fbaf85;
+    --clr-black: #000;
+    --clr-dark-grey: #101010;
+    --clr-light-grey: #F1F1F1;
+    --clr-white-grey: #FAFAFA;
+    --clr-white: #fff;
+    --clr-text-grey: #777;
+
+    /* Spacing */
+    --spacing-xs: 0.5rem;   /* 8px */
+    --spacing-sm: 1rem;     /* 16px */
+    --spacing-md: 1.5rem;   /* 24px */
+    --spacing-lg: 2rem;     /* 32px */
+    --spacing-xl: 3rem;     /* 48px */
+    --spacing-xxl: 4rem;    /* 64px */
+    --spacing-xxxl: 6.25rem; /* 100px */
+
+    /* Font Sizes */
+    --fs-body: 0.9375rem; /* 15px */
+    --fs-h1: 2.25rem;    /* 36px */
+    --fs-h2: 1.75rem;    /* 28px */
+    --fs-h3: 1.5rem;     /* 24px */
+    --fs-btn: 0.8125rem; /* 13px */
+
+    /* Max Container Width */
+    --container-max-width: 1110px;
+}
+
+/* Basic Reset & Global Styles */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Manrope', sans-serif; /* Using Manrope */
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--clr-dark-grey);
+    background-color: var(--clr-white-grey);
+    overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+}
+
+/* No-scroll class for body when mobile menu is open */
+body.no-scroll {
+    overflow: hidden;
+}
+
+.container {
+    width: 90%; /* Default for mobile */
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md); /* 24px horizontal padding */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    text-transform: uppercase;
+    line-height: 1.1;
+    color: var(--clr-dark-grey);
+}
+
+h1 { font-size: var(--fs-h1); }
+h2 { font-size: var(--fs-h2); }
+h3 { font-size: var(--fs-h3); }
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 1rem 2rem; /* 16px 32px */
+    border-radius: 0;
+    text-transform: uppercase;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: var(--fs-btn);
+    letter-spacing: 1px;
+    border: none;
+}
+
+.primary-btn {
+    background-color: var(--clr-primary-orange);
+    color: var(--clr-white);
+}
+
+.primary-btn:hover {
+    background-color: var(--clr-primary-orange-light);
+}
+
+.secondary-btn {
+    background-color: transparent;
+    color: var(--clr-black);
+    border: 1px solid var(--clr-black);
+}
+
+.secondary-btn:hover {
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+}
+
+.secondary-btn-inverted { /* For black buttons on orange/dark backgrounds */
+    background-color: var(--clr-black);
+    color: var(--clr-white);
+    border: 1px solid var(--clr-black); /* Redundant but good to keep explicit */
+}
+
+.secondary-btn-inverted:hover {
+    background-color: var(--clr-dark-grey); /* Slightly lighter black on hover */
+}
+
+.orange-text {
+    color: var(--clr-primary-orange);
+}
+
+/*
+    -------------------------------------------
+    02. Hero Header Wrapper (NEW)
+    -------------------------------------------
+*/
+.hero-header-wrapper {
+    /* This wrapper will now hold the dark background and hero image */
+    background-color: var(--clr-dark-grey); /* Overall dark background */
+    background-image: url('home/mobile/image-hero.jpg'); /* Mobile hero image */
+    background-size: cover;
+    background-position: center top; /* Adjust position for mobile hero */
+    background-repeat: no-repeat;
+    color: var(--clr-white); /* Ensure text is white within this section */
+    position: relative;
+    overflow: hidden; /* Contains any absolute children like the pattern */
+}
+
+/* Circles pattern for hero section - now managed by the wrapper */
+.hero-header-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px; /* Mobile pattern size */
+    height: 500px;
+    background-image: url('home/desktop/pattern-circles.svg'); /* Using desktop pattern as it's large */
+    background-repeat: no-repeat;
+    background-position: center top; /* Align pattern to the top */
+    background-size: cover; /* Cover the defined area, can be 'contain' if preferred */
+    opacity: 0.1; /* Subtle opacity */
+    z-index: 0; /* Keep behind content */
+}
+
+
+/*
+    -------------------------------------------
+    03. Navbar (Adjusted)
+    -------------------------------------------
+*/
+.navbar {
+    background-color: transparent; /* Make navbar background transparent */
+    color: var(--clr-white);
+    padding: var(--spacing-lg) 0; /* 32px top/bottom */
+    position: relative;
+    z-index: 100; /* Ensure navbar is above other hero content */
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    /* Orange line under the navbar for desktop */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: var(--spacing-lg); /* Space for the line */
+}
+
+.navbar .logo {
+    font-size: 1.5rem; /* 24px */
+    font-weight: 700; /* Bold */
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* Mobile Hamburger Menu */
+.hamburger-menu {
+    display: flex; /* Show by default on mobile */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px; /* Adjust size */
+    height: 18px; /* Adjust size */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    position: relative; /* For z-index in overlay */
+    z-index: 200; /* Ensure it's above menu */
+}
+
+.hamburger-menu .bar {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: var(--clr-white);
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger-menu.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger-menu.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+
+.navbar .nav-links {
+    position: absolute; /* Position for mobile overlay */
+    top: 100%; /* Below navbar */
+    left: 0;
+    width: 100%;
+    height: 0; /* Hidden by default */
+    background-color: var(--clr-white); /* White background for mobile menu */
+    color: var(--clr-dark-grey);
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    padding: 0 var(--spacing-md);
+    display: flex; /* Flex container for ul */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    flex-direction: column; /* Stack items */
+    z-index: 150;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.nav-links.active {
+    height: calc(100vh - 90px); /* Full viewport height minus header height */
+    padding: var(--spacing-lg) var(--spacing-md); /* Add padding when active */
+}
+
+.navbar .nav-links ul {
+    display: flex;
+    flex-direction: column; /* Stack vertically for mobile */
+    text-align: center;
+    gap: var(--spacing-md); /* Space between links */
+}
+
+.navbar .nav-links ul li a {
+    text-transform: uppercase;
+    font-size: 1.125rem; /* 18px for mobile menu links */
+    font-weight: 700;
+    transition: color 0.3s ease;
+    padding: var(--spacing-sm) 0; /* Make tap target larger */
+    display: block;
+}
+
+.navbar .nav-links ul li a:hover {
+    color: var(--clr-primary-orange);
+}
+
+.navbar .cart-icon img {
+    width: 1.5rem; /* 24px */
+    height: auto;
+    filter: invert(1); /* To make a black icon white */
+}
+
+
+/*
+    -------------------------------------------
+    04. Hero Section (Adjusted)
+    -------------------------------------------
+*/
+.hero-section {
+    background-image: none; /* Remove background image from here, it's on the wrapper */
+    background-color: transparent; /* Make transparent */
+    color: var(--clr-white);
+    padding-top: var(--spacing-xxl); /* 64px default padding */
+    padding-bottom: var(--spacing-xxl); /* 64px default padding */
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* Center content on mobile */
+    /* Padding bottom might need adjustment on mobile if image overflows significantly */
+}
+
+.hero-section .hero-content-wrapper { /* Use a wrapper for grid layout */
+    display: flex;
+    flex-direction: column-reverse; /* Image below content on mobile */
+    align-items: center;
+    gap: var(--spacing-xl); /* 48px gap */
+}
+
+.hero-image { /* This picture element is for the *visible* image in the content area, not the full background */
+    width: 100%;
+    max-width: 350px; /* Limit mobile image width */
+    margin-bottom: var(--spacing-lg); /* Space above text */
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    /* Responsive image property */
+}
+
+.hero-content {
+    max-width: 500px;
+}
+
+/* Remove the ::before from hero-section now that it's on the wrapper */
+.hero-section::before {
+    content: none;
+}
+
+.new-product-tag {
+    color: var(--clr-white); /* Slightly lighter grey for text */
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.875rem; /* 14px */
+    opacity: 0.5;
+}
+
+.hero-content h1 {
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    color: var(--clr-white);
+}
+
+.hero-description {
+    font-size: var(--fs-body);
+    line-height: 1.8;
+    color: var(--clr-white);
+    opacity: 0.75;
+    margin-bottom: var(--spacing-xl); /* 48px */
+}
+
+
+/*
+    -------------------------------------------
+    05. Category Showcase
+    -------------------------------------------
+*/
+.category-showcase {
+    padding: var(--spacing-xxl) 0; /* 64px padding */
+    background-color: var(--clr-white-grey);
+}
+
+.category-showcase .category-grid {
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    gap: var(--spacing-xxl); /* 64px gap between cards */
+}
+
+.category-card {
+    background-color: var(--clr-light-grey); /* Lighter grey for cards */
+    text-align: center;
+    padding-top: var(--spacing-xxl); /* Space for image */
+    padding-bottom: var(--spacing-lg); /* Adjust padding */
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.02); /* Subtle shadow */
+    flex: 1 1 100%; /* Default to full width for mobile */
+}
+
+.category-card img {
+    position: absolute;
+    top: -3.5rem; /* Adjust to float above the card - approx 56px */
+    left: 50%;
+    transform: translateY(30%) translateX(-50%);
+    width: 6.25rem; /* 100px fixed width for category images */
+    height: auto;
+    object-fit: contain;
+}
+
+.category-card h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: var(--fs-h3);
+}
+
+.shop-link {
+    color: var(--clr-text-grey); /* Grey color for shop link */
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: var(--fs-btn);
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.shop-link .arrow {
+    color: var(--clr-primary-orange);
+    margin-left: var(--spacing-xs); /* 8px */
+    font-size: 1.125rem; /* 18px */
+    line-height: 1;
+}
+
+.shop-link:hover {
+    color: var(--clr-primary-orange);
+}
+
+
+/*
+    -------------------------------------------
+    06. Product Promos
+    -------------------------------------------
+*/
+
+/* ZX9 Speaker Promo */
+.zx9-speaker-promo {
+    background-color: var(--clr-primary-orange);
+    color: var(--clr-white);
+    padding: var(--spacing-xxl) 0;
+    border-radius: 8px;
+    margin-top: var(--spacing-xxl); /* Space from categories */
+    margin-bottom: var(--spacing-xl); /* Space from next section */
+    position: relative;
+    overflow: hidden;
+    text-align: center; /* Center content on mobile */
+}
+
+.zx9-speaker-promo .promo-grid {
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    align-items: center;
+    gap: var(--spacing-xl);
+    position: relative;
+    z-index: 1; /* Ensure content is above background */
+}
+
+.promo-image-zx9 {
+    width: 100%;
+    max-width: 300px; /* Limit mobile image size */
+    margin-bottom: var(--spacing-lg);
+}
+
+.promo-image-zx9 img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.zx9-speaker-promo::before { /* For the circles background */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    width: 500px; /* Adjust size for mobile */
+    height: 500px;
+    background-image: url('home/desktop/pattern-circles.svg'); /* Using desktop pattern as it's a large abstract circle */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain; /* Contain within defined width/height */
+    opacity: 0.2;
+    z-index: 0;
+}
+
+.zx9-content h2 {
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    color: var(--clr-white);
+}
+
+.zx9-content p {
+    font-size: var(--fs-body);
+    line-height: 1.8;
+    color: var(--clr-white);
+    opacity: 0.75;
+    margin-bottom: var(--spacing-xl);
+    max-width: 400px; /* Limit text width */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ZX7 Speaker Promo */
+.zx7-speaker-promo {
+    background-image: url('home/mobile/image-speaker-zx7.jpg'); /* Mobile background image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 6.25rem 0; /* 100px top/bottom */
+    border-radius: 8px;
+    margin-bottom: var(--spacing-xl);
+    color: var(--clr-black);
+    min-height: 20rem; /* Minimum height for background to show */
+    display: flex;
+    align-items: center;
+}
+
+.zx7-speaker-promo .zx7-content-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.zx7-content h2 {
+    font-size: 1.75rem; /* 28px */
+    margin-bottom: var(--spacing-md);
+}
+
+/* YX1 Earphones Promo */
+.yx1-earphones-promo {
+    padding-top: var(--spacing-xl); /* 48px */
+    padding-bottom: var(--spacing-xl);
+}
+
+.yx1-earphones-promo .yx1-grid {
+    display: flex;
+    flex-direction: column; /* Stack vertically on mobile */
+    gap: var(--spacing-md); /* 24px gap */
+}
+
+.promo-image-half {
+    background-color: var(--clr-light-grey);
+    border-radius: 8px;
+    overflow: hidden;
+    min-height: 12.5rem; /* Minimum height to show image */
+}
+
+.promo-image-half img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.promo-content-half {
+    background-color: var(--clr-light-grey);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--spacing-xl) var(--spacing-lg); /* 48px 32px */
+    text-align: left; /* Align text left */
+}
+
+.yx1-content h2 {
+    font-size: 1.75rem; /* 28px */
+    margin-bottom: var(--spacing-md);
+}
+
+
+/*
+    -------------------------------------------
+    07. About Us Section
+    -------------------------------------------
+*/
+.about-us {
+    padding: var(--spacing-xxl) 0;
+    background-color: var(--clr-white-grey);
+    text-align: center; /* Center content on mobile */
+}
+
+.about-us .about-grid {
+    display: flex;
+    flex-direction: column-reverse; /* Image below text on mobile */
+    align-items: center;
+    gap: var(--spacing-xxl);
+}
+
+.about-content {
+    max-width: 500px;
+    margin-bottom: var(--spacing-lg); /* Space below text on mobile */
+}
+
+.about-content h2 {
+    font-size: 1.75rem; /* 28px */
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+}
+
+.about-content p {
+    font-size: var(--fs-body);
+    line-height: 1.8;
+    color: var(--clr-text-grey);
+    opacity: 0.75;
+}
+
+.about-image {
+    width: 100%;
+    max-width: 400px; /* Limit mobile image width */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+
+/*
+    -------------------------------------------
+    08. Footer
+    -------------------------------------------
+*/
+.site-footer {
+    background-color: var(--clr-dark-grey);
+    color: var(--clr-white);
+    padding-top: var(--spacing-xxl); /* 64px */
+    padding-bottom: var(--spacing-xl); /* 48px */
+    position: relative;
+    text-align: center; /* Center content on mobile */
+}
+
+.site-footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items for mobile */
+}
+
+.footer-top {
+    display: flex;
+    flex-direction: column; /* Stack for mobile */
+    align-items: center;
+    gap: var(--spacing-xl); /* 48px gap between logo and nav */
+    width: 100%;
+    margin-bottom: var(--spacing-xl);
+    position: relative;
+}
+
+.footer-top::before {
+    content: '';
+    position: absolute;
+    top: -var(--spacing-xxl); /* Align with padding top */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 5px;
+    background-color: var(--clr-primary-orange);
+    /* For mobile, the line is centered */
+}
+
+.footer-logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-md); /* Space below logo before nav */
+}
+
+.footer-nav-links ul {
+    display: flex;
+    flex-direction: column; /* Stack vertically for mobile */
+    align-items: center;
+    gap: var(--spacing-md); /* 24px gap between links */
+}
+
+.footer-nav-links ul li a {
+    text-transform: uppercase;
+    font-size: var(--fs-btn);
+    font-weight: 700;
+    transition: color 0.3s ease;
+    padding: var(--spacing-xs) 0; /* Make tap target larger */
+    display: block;
+}
+
+.footer-nav-links ul li a:hover {
+    color: var(--clr-primary-orange);
+}
+
+.footer-bottom {
+    display: flex;
+    flex-direction: column; /* Stack for mobile */
+    align-items: center;
+    width: 100%;
+    gap: var(--spacing-lg); /* 32px gap */
+}
+
+.copyright-text {
+    font-size: var(--fs-body);
+    line-height: 1.8;
+    color: var(--clr-white);
+    opacity: 0.75;
+    max-width: 600px; /* Limit text width */
+    margin-bottom: var(--spacing-md); /* Space before social icons */
+}
+
+.footer-bottom-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-md); /* Space between copyright year and social icons */
+}
+
+.copyright-year {
+    color: var(--clr-white);
+    opacity: 0.75;
+    font-size: var(--fs-body);
+}
+
+.social-icons {
+    display: flex;
+    gap: var(--spacing-md); /* 24px */
+    font-size: 1.5rem; /* 24px */
+}
+
+.social-icons a {
+    color: var(--clr-white);
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--clr-primary-orange);
+}
+
+
+/*
+    -------------------------------------------
+    09. Media Queries
+    -------------------------------------------
+*/
+
+/* Tablet Styles (min-width: 768px) */
+@media (min-width: 768px) {
+    .container {
+        width: 90%;
+        padding: 0 var(--spacing-xxl); /* 64px padding for tablet */
+    }
+
+    h1 { font-size: 3.5rem; /* 56px */ }
+    h2 { font-size: 2.5rem; /* 40px */ }
+    h3 { font-size: 1.75rem; /* 28px */ }
+
+    /* Navbar */
+    .navbar .container {
+        padding-bottom: var(--spacing-lg);
+    }
+    .hamburger-menu {
+        display: none; /* Hide hamburger on tablet */
+    }
+    .navbar .nav-links {
+        position: static; /* Reset positioning */
+        height: auto; /* Reset height */
+        background-color: transparent; /* Transparent background */
+        color: var(--clr-white); /* White text */
+        display: block; /* Show as block */
+        padding: 0;
+        z-index: auto;
+        border-radius: 0;
+    }
+    .navbar .nav-links ul {
+        flex-direction: row; /* Row for tablet nav */
+        gap: var(--spacing-md); /* 24px */
+    }
+    .navbar .nav-links ul li a {
+        font-size: var(--fs-btn); /* 13px */
+    }
+    .navbar .logo {
+        margin-right: auto; /* Push nav and cart to right */
+    }
+
+
+    /* Hero Header Wrapper (Tablet) */
+    .hero-header-wrapper {
+        background-image: url('home/tablet/image-hero.jpg'); /* Tablet hero image */
+        background-position: center bottom; /* Adjust position for tablet */
+    }
+    /* Circles pattern for tablet */
+    .hero-header-wrapper::before {
+        width: 944px; /* Larger pattern for tablet */
+        height: 944px;
+        background-position: center right -10rem; /* Position to the right as per design */
+        left: unset; /* Remove left positioning */
+        transform: none; /* Remove translateX */
+    }
+
+    /* Hero Section (Tablet) */
+    .hero-section {
+        padding-top: var(--spacing-xxl); /* 64px */
+        padding-bottom: var(--spacing-xxl); /* 64px */
+        text-align: left; /* Align text left */
+    }
+    .hero-section .hero-content-wrapper {
+        flex-direction: row; /* Image on right, text on left */
+        justify-content: center; /* Center horizontally */
+        gap: var(--spacing-xl); /* Adjust gap */
+    }
+    .hero-content {
+        max-width: 396px; /* Specific width from design */
+        text-align: left;
+    }
+    .hero-image {
+        max-width: 490px; /* Larger image for tablet */
+        margin-bottom: 0;
+    }
+
+
+    /* Category Showcase */
+    .category-showcase .category-grid {
+        flex-direction: row; /* Row for tablet */
+        justify-content: space-between;
+        gap: var(--spacing-md); /* 24px gap */
+    }
+    .category-card {
+        flex: 1; /* Distribute space equally */
+        padding-top: 5rem; /* 80px */
+    }
+    .category-card img {
+        top: -4.5rem;
+        width: 120px; /* Consistent image size */
+    }
+
+
+    /* ZX9 Speaker Promo */
+    .zx9-speaker-promo {
+        padding: 8.25rem 0; /* 132px */
+    }
+    .zx9-speaker-promo .promo-grid {
+        flex-direction: row; /* Image left, content right */
+        justify-content: center;
+        gap: var(--spacing-xxl); /* 64px */
+    }
+    .promo-image-zx9 {
+        width: 300px; /* Fixed width for speaker image */
+        max-width: none; /* Remove max-width from mobile */
+        margin-bottom: 0;
+    }
+    .zx9-content {
+        text-align: left; /* Align text left */
+    }
+    .zx9-content h2 {
+        font-size: 3.5rem; /* 56px */
+    }
+    .zx9-content p {
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .zx9-speaker-promo::before {
+        width: 944px; /* Full size for tablet/desktop */
+        height: 944px;
+        background-position: center left -10rem; /* Position for tablet */
+    }
+
+    /* ZX7 Speaker Promo */
+    .zx7-speaker-promo {
+        background-image: url('home/tablet/image-speaker-zx7.jpg'); /* Tablet background image */
+        padding: 7.25rem 0; /* 116px */
+    }
+    .zx7-content h2 {
+        font-size: 2.5rem; /* 40px */
+    }
+
+    /* YX1 Earphones Promo */
+    .yx1-earphones-promo .yx1-grid {
+        flex-direction: row; /* Two columns for tablet */
+        gap: var(--spacing-lg); /* 32px */
+    }
+    .promo-image-half {
+        min-height: 20rem; /* Give it more height */
+    }
+    .promo-image-half img {
+        object-fit: cover;
+    }
+    .promo-content-half {
+        padding: var(--spacing-xl); /* 48px all around */
+    }
+    .yx1-content h2 {
+        font-size: 2.5rem; /* 40px */
+    }
+
+
+    /* About Us Section */
+    .about-us {
+        text-align: left; /* Align text left */
+    }
+    .about-us .about-grid {
+        flex-direction: row; /* Text left, image right */
+        gap: var(--spacing-xxl);
+    }
+    .about-image {
+        order: 2; /* Ensure image is on the right */
+        max-width: 400px; /* Adjust as needed */
+        margin-bottom: 0;
+    }
+    .about-content {
+        order: 1; /* Ensure content is on the left */
+    }
+    .about-content h2 {
+        font-size: 2.5rem; /* 40px */
+    }
+
+
+    /* Footer */
+    .site-footer {
+        text-align: left; /* Align left */
+    }
+    .site-footer .container {
+        align-items: flex-start; /* Align content to the left */
+    }
+    .footer-top {
+        flex-direction: row; /* Row for logo and nav */
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-xxl); /* 64px */
+    }
+    .footer-top::before {
+        left: 0; /* Align to left of container */
+        transform: none; /* Remove translateX */
+    }
+    .footer-nav-links ul {
+        flex-direction: row; /* Row for nav links */
+        gap: var(--spacing-md);
+    }
+    .footer-logo {
+        margin-bottom: 0;
+    }
+    .footer-bottom {
+        flex-direction: row; /* Row for text and social icons */
+        justify-content: space-between;
+        align-items: flex-end; /* Align social icons to bottom */
+    }
+    .copyright-text {
+        max-width: 33.75rem; /* 540px, adjust based on design */
+        margin-bottom: 0;
+    }
+    .footer-bottom-right {
+        flex-direction: row; /* Row for copyright year and social icons */
+        align-items: center; /* Vertically align */
+        gap: var(--spacing-xl); /* 48px */
+        margin-top: 0; /* Reset margin */
+    }
+    .copyright-year {
+        margin-top: auto; /* Push to the bottom if content is uneven */
+    }
+}
+
+/* Desktop Styles (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .container {
+        width: 80%; /* Slightly narrower for larger screens, or keep 90% */
+        padding: 0; /* No horizontal padding, container handles width */
+    }
+
+    /* Navbar */
+    .navbar .container {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        padding-bottom: var(--spacing-md); /* 24px padding below line */
+    }
+    .navbar .logo {
+        margin-right: 180px; /* Exact gap as per design */
+    }
+    .navbar .nav-links ul li {
+        margin-left: 35px; /* Adjust spacing */
+    }
+    .navbar .cart-icon {
+        margin-left: auto; /* Push cart to far right */
+    }
+
+    /* Hero Header Wrapper (Desktop) */
+    .hero-header-wrapper {
+        background-image: url('home/desktop/image-hero.jpg'); /* Desktop hero image */
+        background-position: center right; /* Adjust for desktop */
+    }
+    /* Circles pattern for desktop */
+    .hero-header-wrapper::before {
+        background-position: center right; /* Adjust pattern position */
+        right: 0; /* Align pattern to the right */
+        left: unset; /* Remove left positioning */
+    }
+
+
+    /* Hero Section (Desktop) */
+    .hero-section {
+        padding-top: 8.25rem; /* 132px */
+        padding-bottom: 8.25rem; /* 132px */
+    }
+    .hero-section .hero-content-wrapper {
+        justify-content: flex-start; /* Align content to the left */
+        gap: 0; /* Remove gap */
+    }
+    .hero-content {
+        position: relative;
+        z-index: 1; /* Bring content forward */
+        padding-right: 1.5rem; /* Add some space before image */
+        max-width: 396px;
+    }
+    .hero-image {
+        position: absolute; /* Position absolutely to overlap */
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 700px; /* Larger image for desktop */
+        max-width: unset;
+        display: block; /* Ensure the image element is visible on desktop */
+    }
+
+
+    /* Category Showcase */
+    .category-showcase .category-grid {
+        gap: 30px; /* Specific gap */
+    }
+    .category-card {
+        padding-top: 7.25rem; /* 116px */
+    }
+    .category-card img {
+        width: 120px; /* Larger image for desktop */
+        top: -60px; /* Adjust if needed based on new image size */
+    }
+
+    /* ZX9 Speaker Promo */
+    .zx9-speaker-promo {
+        padding: 8.25rem 0; /* 132px */
+    }
+    .zx9-speaker-promo .promo-grid {
+        gap: 125px; /* Larger gap */
+    }
+    .promo-image-zx9 {
+        width: 410px; /* Specific image width */
+    }
+    .zx9-speaker-promo::before {
+        background-position: center left -5rem; /* Adjust pattern position */
+    }
+    .zx7-speaker-promo {
+        background-image: url('home/desktop/image-speaker-zx7.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        padding: 7.25rem 0;
+        min-height: 200px; /* Make sure the section has height */
+    }
+
+    /* YX1 Earphones Promo */
+    .yx1-earphones-promo .yx1-grid {
+        gap: var(--spacing-xl); /* 48px */
+    }
+    .promo-image-half {
+        flex: 0 0 calc(50% - 24px); /* Half width minus gap */
+        min-height: 300px; /* Set a specific height */
+    }
+    .promo-content-half {
+        flex: 0 0 calc(50% - 24px); /* Half width minus gap */
+        min-height: 300px; /* Match image height */
+        padding: var(--spacing-xxl); /* 64px padding */
+    }
+
+    /* About Us Section */
+    .about-us .about-grid {
+        gap: 125px; /* Larger gap */
+    }
+    .about-image {
+        max-width: 540px; /* Specific width */
+    }
+    .about-content {
+        max-width: 445px; /* Specific width */
+    }
+    .about-content h2 {
+        font-size: 2.5rem; /* 40px */
+    }
+
+
+    /* Footer */
+    .site-footer .container {
+        align-items: flex-start;
+    }
+    .footer-top {
+        margin-bottom: 36px; /* Specific margin */
+    }
+    .copyright-text {
+        margin-bottom: 0; /* Reset margin */
+    }
+    .footer-bottom {
+        flex-direction: row; /* Ensure row layout */
+        justify-content: space-between;
+        align-items: flex-end;
+    }
+    .footer-bottom-right {
+        align-items: flex-end; /* Align social icons to right */
+        flex-direction: column-reverse; /* Icons above copyright year */
+        gap: 30px; /* Gap between icons and copyright */
+    }
+    .copyright-year {
+        margin-top: 0;
+    }
+    .social-icons {
+        margin-bottom: 0; /* Reset margin */
+    }
+}
