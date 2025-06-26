@@ -2,10 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    const correctAssetPath = (path) => {
-        return  path.replace('/assets/', '/assets/images/'); 
-    };
-
     const categoryTitleElement = document.getElementById('category-page-title');
     const productListContainer = document.getElementById('product-list-container');
     const noProductsMessage = document.getElementById('no-products-message');

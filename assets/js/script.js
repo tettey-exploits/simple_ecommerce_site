@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Helper function to correct asset paths by inserting '/images/'
-    // This function should be defined once, accessible to all rendering functions.
     const correctAssetPath = (path) => {
         return  path.replace('/assets/', '/assets/images/'); 
     };
@@ -166,6 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const quantity = parseInt(document.getElementById('product-quantity').innerText, 10);
 
         const product = {
+            id: currentProduct.id,
             slug: currentProduct.slug,
             name: currentProduct.name,
             price: currentProduct.price,
