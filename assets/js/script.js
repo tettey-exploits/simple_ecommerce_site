@@ -2,22 +2,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // Helper function to correct asset paths by inserting '/images/'
     // This function should be defined once, accessible to all rendering functions.
     const correctAssetPath = (path) => {
-        // Check if the path starts with /assets/ but doesn't already contain /assets/images/
-        if (path && path.startsWith('/assets/') && !path.startsWith('/assets/images/')) {
-            return path.replace('/assets/', '/assets/images/');
-        }
-        return path; // Return original path if no correction is needed or already corrected
+        return  path.replace('/assets/', '/assets/images/'); 
     };
 
     // Ideal: Get productSlug from URL query parameter (e.g., product.html?slug=yx1-earphones)
     const urlParams = new URLSearchParams(window.location.search);
-    const productSlug = urlParams.get('slug') || "yx1-earphones"; // Fallback to YX1 if no slug in URL
+    const productSlug = urlParams.get('slug');
+    var currentProduct;
 
     fetch('./data.json')
         .then(response => response.json())
         .then(data => {
             const product = data.find(p => p.slug === productSlug);
             if (product) {
+                currentProduct = product; // Store the current product for later use
+
                 renderProductDetails(product);
                 renderProductImages(product.gallery);
                 renderYouMayAlsoLike(product.others);
@@ -74,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Product Features and Includes Section
-        const featuresContentElement = document.querySelector('.features-content p');
+        const featuresContentElement = document.querySelector('.features-content');
         if (featuresContentElement) {
             // Split the features string by '\n\n' to create paragraphs
             const featureParagraphs = product.features.split('\n\n').map(p => `<p>${p}</p>`).join('');
@@ -93,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function renderProductImages(gallery) {
         const galleryImageSmall1 = document.querySelector('.gallery-image-small-1 picture');
         if (galleryImageSmall1) {
-            // Applying correctAssetPath here
             galleryImageSmall1.innerHTML = `
                 <source media="(min-width: 1024px)" srcset="${correctAssetPath(gallery.first.desktop)}">
                 <source media="(min-width: 768px)" srcset="${correctAssetPath(gallery.first.tablet)}">
@@ -103,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const galleryImageSmall2 = document.querySelector('.gallery-image-small-2 picture');
         if (galleryImageSmall2) {
-            // Applying correctAssetPath here
             galleryImageSmall2.innerHTML = `
                 <source media="(min-width: 1024px)" srcset="${correctAssetPath(gallery.second.desktop)}">
                 <source media="(min-width: 768px)" srcset="${correctAssetPath(gallery.second.tablet)}">
@@ -135,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </picture>
                     </div>
                     <h3>${item.name}</h3>
-                    <a href="/product.html?slug=${item.slug}" class="button button-primary">SEE PRODUCT</a>
+                    <a href="/product-page.html?slug=${item.slug}" class="button button-primary">SEE PRODUCT</a>
                 </div>
             `).join('');
         }
@@ -159,4 +156,21 @@ document.addEventListener('DOMContentLoaded', () => {
             quantityValue.textContent = currentValue + 1;
         });
     }
+
+    const addToCartBtn = document.getElementById('add-to-cart-btn');
+    
+    addToCartBtn.addEventListener('click', () => {
+        // const productName = document.getElementById('product-name').textContent;
+        // const productPrice = parseFloat(document.getElementById('product-price').dataset.price);
+        // const productImage = '/assets/cart/image-' + `${productId}` ; // Adjust path for cart image
+        const quantity = parseInt(document.getElementById('product-quantity').innerText, 10);
+
+        const product = {
+            slug: currentProduct.slug,
+            name: currentProduct.name,
+            price: currentProduct.price,
+            image: `/assets/images/cart/image-${currentProduct.slug}.jpg` // Small image for cart
+        };
+        addToCart(product, quantity);
+    });
 });

@@ -142,7 +142,7 @@ h3 { font-size: var(--fs-h3); }
 .hero-header-wrapper {
     /* This wrapper will now hold the dark background and hero image */
     background-color: var(--clr-dark-grey); /* Overall dark background */
-    background-image: url('images/home/mobile/image-hero.jpg'); /* Mobile hero image */
+    background-image: url('../images/home/mobile/image-header.jpg'); /* Mobile hero image */
     background-size: cover;
     background-position: center top; /* Adjust position for mobile hero */
     background-repeat: no-repeat;
@@ -160,7 +160,7 @@ h3 { font-size: var(--fs-h3); }
     transform: translateX(-50%);
     width: 500px; /* Mobile pattern size */
     height: 500px;
-    background-image: url('images/home/desktop/pattern-circles.svg'); /* Using desktop pattern as it's large */
+    background-image: url('../images/home/desktop/pattern-circles.svg'); /* Using desktop pattern as it's large */
     background-repeat: no-repeat;
     background-position: center top; /* Align pattern to the top */
     background-size: cover; /* Cover the defined area, can be 'contain' if preferred */
@@ -471,7 +471,7 @@ h3 { font-size: var(--fs-h3); }
     transform: translateX(-50%);
     width: 500px; /* Adjust size for mobile */
     height: 500px;
-    background-image: url('images/home/desktop/pattern-circles.svg'); /* Using desktop pattern as it's a large abstract circle */
+    background-image: url('../images/home/desktop/pattern-circles.svg'); /* Using desktop pattern as it's a large abstract circle */
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain; /* Contain within defined width/height */
@@ -499,7 +499,7 @@ h3 { font-size: var(--fs-h3); }
 
 /* ZX7 Speaker Promo */
 .zx7-speaker-promo {
-    background-image: url('images/home/mobile/image-speaker-zx7.jpg'); /* Mobile background image */
+    background-image: url('../images/home/mobile/image-speaker-zx7.jpg'); /* Mobile background image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -780,7 +780,7 @@ h3 { font-size: var(--fs-h3); }
 
     /* Hero Header Wrapper (Tablet) */
     .hero-header-wrapper {
-        background-image: url('images/home/tablet/image-hero.jpg'); /* Tablet hero image */
+        background-image: url('../images/home/tablet/image-header.jpg'); /* Tablet hero image */
         background-position: center bottom; /* Adjust position for tablet */
     }
     /* Circles pattern for tablet */
@@ -861,7 +861,7 @@ h3 { font-size: var(--fs-h3); }
 
     /* ZX7 Speaker Promo */
     .zx7-speaker-promo {
-        background-image: url('images/home/tablet/image-speaker-zx7.jpg'); /* Tablet background image */
+        background-image: url('../images/home/tablet/image-speaker-zx7.jpg'); /* Tablet background image */
         padding: 7.25rem 0; /* 116px */
     }
     .zx7-content h2 {
@@ -976,7 +976,7 @@ h3 { font-size: var(--fs-h3); }
 
     /* Hero Header Wrapper (Desktop) */
     .hero-header-wrapper {
-        background-image: url('images/home/desktop/image-hero.jpg'); /* Desktop hero image */
+        background-image: url('../images/home/desktop/image-hero.jpg'); /* Desktop hero image */
         background-position: center right; /* Adjust for desktop */
     }
     /* Circles pattern for desktop */
@@ -1039,7 +1039,7 @@ h3 { font-size: var(--fs-h3); }
         background-position: center left -5rem; /* Adjust pattern position */
     }
     .zx7-speaker-promo {
-        background-image: url('images/home/desktop/image-speaker-zx7.jpg');
+        background-image: url('../images/home/desktop/image-speaker-zx7.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -1418,7 +1418,7 @@ body {
 
 /* Tablet styles (>= 768px) */
 @media (min-width: 768px) {
-    .hero-header-wrapper, .product-header{
+    .hero-header-wrapper .product-header{
         background-image: none;
     }
     .product-page-container {
@@ -1577,3 +1577,4 @@ body {
         width: calc(33.33% - 20px); /* Adjust for larger gap */
     }
 }
+

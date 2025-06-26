@@ -1,0 +1,267 @@
+/*
+    -------------------------------------------
+    10. Checkout Page Styles
+    -------------------------------------------
+*/
+.checkout-page {
+    background-color: var(--clr-white-grey);
+    padding: var(--spacing-l) 0; /* Generous padding top and bottom */
+}
+
+.checkout-container {
+    display: flex;
+    flex-direction: column; /* Stack columns on mobile */
+    gap: var(--spacing-xxl); /* Gap between sections */
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.checkout-form-section {
+    flex: 1.5; /* Takes more space on desktop */
+    background-color: var(--clr-white);
+    border-radius: 8px;
+    padding: var(--spacing-xxl) var(--spacing-lg); /* 64px top/bottom, 32px left/right */
+}
+
+.checkout-form-section h1 {
+    font-size: var(--fs-h2); /* Smaller than homepage H1, but prominent */
+    color: var(--clr-black);
+    margin-bottom: var(--spacing-xxl); /* Space before sections start */
+}
+
+.form-section-title {
+    color: var(--clr-primary-orange);
+    text-transform: uppercase;
+    font-size: 0.8125rem; /* 13px */
+    letter-spacing: 1px;
+    margin-bottom: var(--spacing-md);
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg); /* Space between form groups */
+}
+
+.form-group.grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: var(--spacing-md); /* Gap between inputs */
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.75rem; /* 12px */
+    font-weight: bold;
+    color: var(--clr-dark-grey);
+    margin-bottom: var(--spacing-xs);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="number"],
+.form-group select {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md); /* 16px 24px */
+    border: 1px solid var(--clr-light-grey);
+    border-radius: 8px;
+    font-size: var(--fs-body);
+    color: var(--clr-dark-grey);
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--clr-primary-orange);
+}
+
+.form-group input.error {
+    border-color: #CD2C2C; /* Error color */
+}
+
+.form-group .error-message {
+    color: #CD2C2C;
+    font-size: 0.75rem;
+    margin-top: var(--spacing-xs);
+}
+
+/* Radio button styles */
+.radio-group {
+    border: 1px solid var(--clr-light-grey);
+    border-radius: 8px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+}
+
+.radio-group:hover {
+    border-color: var(--clr-primary-orange);
+}
+
+.radio-group input[type="radio"] {
+    appearance: none; /* Hide default radio button */
+    width: 1rem;
+    height: 1rem;
+    border: 1px solid var(--clr-light-grey);
+    border-radius: 50%;
+    margin-right: var(--spacing-md);
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.radio-group input[type="radio"]:checked {
+    border-color: var(--clr-primary-orange);
+}
+
+.radio-group input[type="radio"]:checked::before {
+    content: '';
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: var(--clr-primary-orange);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.radio-group label {
+    margin-bottom: 0; /* Override default label margin */
+    cursor: pointer;
+}
+
+
+.checkout-summary-section {
+    flex: 0.7; /* Takes less space on desktop */
+    background-color: var(--clr-white);
+    border-radius: 8px;
+    padding: var(--spacing-xl) var(--spacing-lg); /* 48px top/bottom, 32px left/right */
+}
+
+.checkout-summary-section h2 {
+    font-size: var(--fs-h3);
+    color: var(--clr-black);
+    margin-bottom: var(--spacing-lg);
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.summary-item img {
+    width: 64px; /* Product image size */
+    height: 64px;
+    border-radius: 8px;
+    object-fit: cover;
+    margin-right: var(--spacing-md);
+}
+
+.summary-item-details {
+    flex-grow: 1;
+}
+
+.summary-item-details h4 {
+    font-size: var(--fs-body);
+    font-weight: bold;
+    color: var(--clr-dark-grey);
+    margin-bottom: var(--spacing-xs);
+    text-transform: capitalize; /* Product names usually not uppercase */
+}
+
+.summary-item-details .price {
+    font-size: 0.8125rem; /* 13px */
+    color: var(--clr-text-grey);
+    font-weight: bold;
+}
+
+.summary-item .quantity {
+    font-size: var(--fs-body);
+    color: var(--clr-text-grey);
+    font-weight: bold;
+}
+
+.summary-total-breakdown {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid var(--clr-light-grey);
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.total-row span:first-child {
+    color: var(--clr-text-grey);
+    text-transform: uppercase;
+    font-size: var(--fs-btn);
+}
+
+.total-row span:last-child {
+    font-weight: bold;
+    color: var(--clr-dark-grey);
+}
+
+.grand-total-row span:first-child {
+    color: var(--clr-primary-orange);
+}
+
+.grand-total-row span:last-child {
+    color: var(--clr-primary-orange);
+    font-size: 1.125rem; /* 18px */
+}
+
+.checkout-button {
+    width: 100%;
+    margin-top: var(--spacing-xl);
+}
+
+/* Media Queries for Tablet and Desktop */
+@media (min-width: 768px) {
+    .checkout-container {
+        padding: 0 var(--spacing-xxl); /* Match container padding */
+    }
+
+    .form-group.grid {
+        grid-template-columns: 1fr 1fr; /* Two columns on tablet+ */
+    }
+
+    .checkout-form-section h1 {
+        font-size: var(--fs-h1); /* Larger H1 on tablet+ */
+    }
+
+    .checkout-form-section {
+        padding: var(--spacing-xxl) var(--spacing-xxl); /* More padding */
+    }
+
+    .checkout-summary-section {
+        padding: var(--spacing-xxl) var(--spacing-xl); /* Adjusted padding */
+    }
+}
+
+@media (min-width: 1024px) {
+    .checkout-container {
+        flex-direction: row; /* Side-by-side columns on desktop */
+        align-items: flex-start; /* Align to top */
+        gap: var(--spacing-lg); /* Adjust gap for desktop */
+        padding: 0; /* Remove horizontal padding, container handles width */
+    }
+
+    .checkout-form-section {
+        padding: var(--spacing-xxl) var(--spacing-xxl); /* Generous padding */
+    }
+
+    .checkout-summary-section {
+        padding: var(--spacing-xl);
+    }
+}

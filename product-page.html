@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YX1 Wireless Earphones - Product Details</title>
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
 </head>
 
 <body>
@@ -19,14 +19,16 @@
                 </button>
                 <nav class="nav-links">
                     <ul>
-                        <li><a href="#">HOME</a></li>
+                        <li><a href="/">HOME</a></li>
                         <li><a href="#">HEADPHONES</a></li>
                         <li><a href="#">SPEAKERS</a></li>
                         <li><a href="#">EARPHONES</a></li>
                     </ul>
                 </nav>
                 <div class="cart-icon">
-                    <img src="/assets/images/shared/desktop/icon-cart.svg" alt="Shopping Cart">
+                    <a href="/checkout.html" class="cart-icon-link" aria-label="View Shopping Cart">
+                        <img src="/assets/images/shared/desktop/icon-cart.svg" alt="Shopping Cart">
+                    </a>
                 </div>
             </div>
         </header>
@@ -38,21 +40,21 @@
                 <picture>
                     <source media="(min-width: 1024px)" srcset="/assets/images/product-yx1-earphones/desktop/image-product.jpg">
                     <source media="(min-width: 768px)" srcset="/assets/images/product-yx1-earphones/tablet/image-product.jpg">
-                    <img src="/assets/images/product-yx1-earphones/mobile/image-product.jpg" alt="YX1 Wireless Earphones">
+                    <img id="product-image" src="/assets/images/product-yx1-earphones/mobile/image-product.jpg" alt="YX1 Wireless Earphones">
                 </picture>
             </div>
             <div class="product-detail-info">
                 <span class="new-product-tag">NEW PRODUCT</span>
-                <h1 class="product-name">YX1 Wireless Earphones</h1>
+                <h1 class="product-name" id="product-name">YX1 Wireless Earphones</h1>
                 <p class="product-description">Tailor your listening experience with bespoke dynamic drivers from the new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even in noisy environments with its active noise cancellation feature.</p>
-                <p class="product-price">$ 599</p>
+                <p class="product-price" id="product-price">$ 599</p>
                 <div class="add-to-cart-controls">
                     <div class="quantity-selector">
                         <button class="quantity-minus">-</button>
-                        <span class="quantity-value">1</span>
+                        <span class="quantity-value" id="product-quantity">0</span>
                         <button class="quantity-plus">+</button>
                     </div>
-                    <button class="add-to-cart-button button button-primary">ADD TO CART</button>
+                    <button class="add-to-cart-button button button-primary" id="add-to-cart-btn">ADD TO CART</button>
                 </div>
             </div>
         </section>
@@ -111,7 +113,7 @@
                         </picture>
                     </div>
                     <h3>XX99 Mark I</h3>
-                    <a href="/product/xx99-mark-one-headphones" class="button button-primary">SEE PRODUCT</a>
+                    <a href="/product-page.html?slug=xx99-mark-one-headphones" class="button button-primary">SEE PRODUCT</a>
                 </div>
 
                 <div class="related-product-item">
@@ -123,7 +125,7 @@
                         </picture>
                     </div>
                     <h3>XX59</h3>
-                    <a href="/product-page.html/xx59-headphones" class="button button-primary">SEE PRODUCT</a>
+                    <a href="/product-page.html?slug=xx59-headphones" class="button button-primary">SEE PRODUCT</a>
                 </div>
 
                 <div class="related-product-item">
@@ -135,7 +137,7 @@
                         </picture>
                     </div>
                     <h3>ZX9 Speaker</h3>
-                    <a href="/product/zx9-speaker" class="button button-primary">SEE PRODUCT</a>
+                    <a href="/product-page.html?slug=zx9-speaker" class="button button-primary">SEE PRODUCT</a>
                 </div>
             </div>
         </section>
@@ -145,6 +147,7 @@
         <p>&copy; 2025 Audiophile. All rights reserved.</p>
     </footer>
 
-   <script src="/assets/script.js"></script>
+   <script src="/assets/js/script.js"></script>
+   <script src="/assets/js/checkout.js"></script>
 </body>
 </html>

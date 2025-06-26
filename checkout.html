@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audiophile Checkout</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/checkout.css">
+    <link rel="stylesheet" href="/assets/css/style.css"> 
+</head>
+<body>
+    <div class="hero-header-wrapper product-header">
+        <header class="navbar">
+            <div class="container">
+                <div class="logo">audiophile</div>
+                <button class="hamburger-menu" aria-label="Toggle navigation">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <nav class="nav-links">
+                    <ul>
+                        <li><a href="/">HOME</a></li>
+                        <li><a href="#">HEADPHONES</a></li>
+                        <li><a href="#">SPEAKERS</a></li>
+                        <li><a href="#">EARPHONES</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon">
+                    <a href="/checkout.html" class="cart-icon-link" aria-label="View Shopping Cart">
+                        <img src="/assets/images/shared/desktop/icon-cart.svg" alt="Shopping Cart">
+                    </a>
+                </div>
+            </div>
+        </header>
+    </div>
+
+    <main class="checkout-page">
+        <div class="container checkout-container">
+
+            <section class="checkout-form-section">
+                <h1>Checkout</h1>
+                <form>
+                    <h3 class="form-section-title">Billing Details</h3>
+                    <div class="form-group grid">
+                        <div>
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Alexei Ward" required>
+                            </div>
+                        <div>
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="alexei@mail.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group grid">
+                        <div>
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 202-555-0136" required>
+                        </div>
+                    </div>
+
+                    <h3 class="form-section-title">Shipping Info</h3>
+                    <div class="form-group grid">
+                        <div class="full-width"> <label for="address">Your Address</label>
+                            <input type="text" id="address" name="address" placeholder="1137 Williams Avenue" required>
+                        </div>
+                    </div>
+                    <div class="form-group grid">
+                        <div>
+                            <label for="zip">ZIP Code</label>
+                            <input type="text" id="zip" name="zip" placeholder="10001" required>
+                        </div>
+                        <div>
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" placeholder="New York" required>
+                        </div>
+                    </div>
+                    <div class="form-group grid">
+                        <div>
+                            <label for="country">Country</label>
+                            <input type="text" id="country" name="country" placeholder="United States" required>
+                        </div>
+                    </div>
+
+                    <h3 class="form-section-title">Payment Details</h3>
+                    <div class="form-group grid">
+                        <label>Payment Method</label>
+                        <div>
+                            <div class="radio-group">
+                                <input type="radio" id="e-money" name="payment-method" value="e-money" checked>
+                                <label for="e-money">e-Money</label>
+                            </div>
+                            <div class="radio-group">
+                                <input type="radio" id="cash-on-delivery" name="payment-method" value="cash-on-delivery">
+                                <label for="cash-on-delivery">Cash on Delivery</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group grid" id="e-money-details">
+                        <div>
+                            <label for="e-money-number">e-Money Number</label>
+                            <input type="number" id="e-money-number" name="e-money-number" placeholder="238521993" required>
+                        </div>
+                        <div>
+                            <label for="e-money-pin">e-Money PIN</label>
+                            <input type="number" id="e-money-pin" name="e-money-pin" placeholder="6891" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn primary-btn checkout-button" id="checkout-form">Continue & Pay</button>
+                </form>
+            </section>
+
+            <section class="checkout-summary-section">
+                <h2>Summary</h2>
+
+                <div class="summary-items" id="cart-items-summary">
+                    <div class="summary-item">
+                        <img src="assets/images/cart/image-xx99-mark-two-headphones.jpg" alt="XX99 Mark II Headphones">
+                        <div class="summary-item-details">
+                            <h4>XX99 MK II</h4>
+                            <span class="price">$ 2,999</span>
+                        </div>
+                        <span class="quantity">x1</span>
+                    </div>
+
+                    <div class="summary-item">
+                        <img src="assets/images/cart/image-zx9-speaker.jpg" alt="ZX9 Speaker">
+                        <div class="summary-item-details">
+                            <h4>ZX9 Speaker</h4>
+                            <span class="price">$ 4,500</span>
+                        </div>
+                        <span class="quantity">x1</span>
+                    </div>
+
+                 </div>
+
+                <div class="summary-total-breakdown">
+                    <div class="total-row">
+                        <span>Total</span>
+                        <span id="summary-total-products">$ 0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>Shipping</span>
+                        <span id="summary-shipping">$ 0.00</span>
+                    </div>
+                    <div class="total-row">
+                        <span>VAT (Included)</span>
+                        <span id="summary-vat">$ 0.00</span>
+                    </div>
+                    <div class="total-row grand-total-row">
+                        <span>Grand Total</span>
+                        <span id="summary-grand-total">$ 0.00</span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn primary-btn checkout-button">Continue & Pay</button>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-top">
+                <a href="#" class="footer-logo">Audiophile</a>
+                <nav class="footer-nav-links">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="category-headphones.html">Headphones</a></li>
+                        <li><a href="category-speakers.html">Speakers</a></li>
+                        <li><a href="category-earphones.html">Earphones</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright-text">
+                    Audiophile is an all in one stop to fulfill your audio needs. We're a small team of music lovers
+                    and sound specialists who are devoted to helping you get the most out of personal audio. Come and
+                    visit our demo facility - we’re open 7 days a week.
+                </p>
+                <div class="footer-bottom-right">
+                    <div class="footer-bottom-right">
+                        <div class="social-icons">
+                            <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script src="/assets/js/checkout.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const eMoneyRadio = document.getElementById('e-money');
+            const cashOnDeliveryRadio = document.getElementById('cash-on-delivery');
+            const eMoneyDetails = document.getElementById('e-money-details');
+            const goBackLink = document.querySelector('.go-back-link');
+
+            // Initial state for e-money details
+            if (eMoneyRadio.checked) {
+                eMoneyDetails.style.display = 'grid'; // Use 'grid' to maintain layout
+            } else {
+                eMoneyDetails.style.display = 'none';
+            }
+
+            eMoneyRadio.addEventListener('change', function() {
+                if (this.checked) {
+                    eMoneyDetails.style.display = 'grid';
+                }
+            });
+
+            cashOnDeliveryRadio.addEventListener('change', function() {
+                if (this.checked) {
+                    eMoneyDetails.style.display = 'none';
+                }
+            });
+
+            // Go Back link functionality
+            if (goBackLink) {
+                goBackLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.history.back();
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
