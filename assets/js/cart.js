@@ -26,6 +26,7 @@ function addToCart(product, quantity = 1) {
     } else {
         // New item, add to cart
         cart.push({
+            id: product.id,
             slug: product.slug,
             name: product.name,
             price: product.price,
@@ -110,7 +111,6 @@ function showCartModal() {
 function hideCartModal() {
     // Implement logic to hide your mini-cart/sidebar
     console.log("Mini cart modal would hide here!");
-    // Example: document.getElementById('mini-cart-modal').classList.remove('active');
 }
 
 // Initialize cart display when the script loads
@@ -193,10 +193,9 @@ function renderCartPage() {
         if (cartSummaryVAT) cartSummaryVAT.textContent = `$ ${vatAmount.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
         if (cartSummaryGrandTotal) cartSummaryGrandTotal.textContent = `$ ${grandTotal.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 
-        // Attach event listeners for quantity controls AFTER elements are rendered
         cartItemsContainer.querySelectorAll('.quantity-btn').forEach(button => {
             button.addEventListener('click', (event) => {
-                const productId = event.target.dataset.id;
+                const productId = parseInt(event.target.dataset.id, 10);
                 const currentItem = cart.find(item => item.id === productId);
                 if (!currentItem) return; // Should not happen
 
@@ -206,6 +205,7 @@ function renderCartPage() {
                 } else if (event.target.classList.contains('decrease-btn')) {
                     newQuantity--;
                 }
+
                 updateCartItemQuantity(productId, newQuantity); // This calls saveCart and updateCartDisplay
                 renderCartPage(); // Re-render the cart page to reflect changes
             });

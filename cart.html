@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="cart-items" id="cart-page-items">
-                        </div>
+                    </div>
 
                     <p id="cart-empty-message" class="empty-cart-message" style="display: none;">Your cart is empty.</p>
 
@@ -150,15 +150,6 @@
             // Update item count in header of cart page
             const cart = getCart();
             document.getElementById('cart-item-count').textContent = cart.length;
-
-            // Go Back link functionality
-            const goBackLink = document.querySelector('.go-back-link');
-            if (goBackLink) {
-                goBackLink.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    window.history.back();
-                });
-            }
         });
     </script>
 </body>
