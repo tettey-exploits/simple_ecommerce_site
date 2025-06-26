@@ -1,0 +1,155 @@
+
+/*
+    -------------------------------------------
+    11. Product Listing Page Styles
+    -------------------------------------------
+*/
+
+/* Category Header Wrapper (now white background with dark text) */
+.category-header-wrapper {
+    background-color: var(--clr-white); /* Changed to white */
+    color: var(--clr-dark-grey); /* Text color set to dark grey */
+    padding: 0 var(--spacing-xl) 0 0; /* 48px top/bottom */
+    text-align: center;
+    position: relative;
+    z-index: 1; /* Ensure it's above other content if needed */
+    border-bottom: 1px solid var(--clr-light-grey); /* Added for visual separation */
+}
+
+
+.category-title {
+    font-size: var(--fs-h2); /* 28px for mobile */
+    text-transform: uppercase;
+    color: var(--clr-dark-grey); /* Explicitly set to dark grey */
+    line-height: 1;
+}
+
+/* Main content area for product list */
+.products-page-main {
+    padding-bottom: var(--spacing-xxl); /* 64px */
+    background-color: var(--clr-white-grey); /* Consistent background */
+}
+
+/* Product Card Styling */
+.product-list-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xxxl); /* 100px gap between product cards */
+    margin-bottom: var(--spacing-xxl); /* Space before category showcase */
+}
+
+.product-card {
+    display: flex;
+    flex-direction: column; /* Stack image and content on mobile */
+    align-items: center;
+    text-align: center;
+}
+
+.product-image {
+    margin-bottom: var(--spacing-lg); /* Space below image on mobile */
+    width: 100%;
+    max-width: 500px; /* Limit image width on mobile/tablet */
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.product-content {
+    max-width: 500px; /* Limit text width */
+}
+
+.new-product-tag {
+    color: var(--clr-primary-orange); /* Orange color */
+    text-transform: uppercase;
+    letter-spacing: 8px;
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.875rem; /* 14px */
+    display: block; /* Ensure it takes its own line */
+}
+
+.product-content h2 {
+    font-size: var(--fs-h2); /* 28px for mobile */
+    line-height: 1.1;
+    margin-bottom: var(--spacing-md);
+    color: var(--clr-dark-grey);
+}
+
+.product-content p {
+    font-size: var(--fs-body);
+    line-height: 1.8;
+    color: var(--clr-text-grey);
+    opacity: 0.75;
+    margin-bottom: var(--spacing-xl); /* Space before button */
+}
+
+/* Media Queries for Product Listing */
+
+/* Tablet Styles (min-width: 768px) */
+@media (min-width: 768px) {
+    .category-header-wrapper {
+        padding: 10px 0; 
+    }
+    .category-title {
+        font-size: var(--fs-h1); /* 56px for tablet */
+    }
+
+    .product-card {
+        flex-direction: row; /* Side-by-side on tablet */
+        text-align: left; /* Align content to left */
+        gap: var(--spacing-xxl); /* 64px gap between image and content */
+        align-items: center; /* Vertically align items */
+    }
+
+    .product-image {
+        flex: 1; /* Take half width */
+        margin-bottom: 0;
+        max-width: unset; /* Remove mobile max-width */
+    }
+
+    .product-content {
+        flex: 1; /* Take half width */
+        max-width: unset; /* Remove mobile max-width */
+    }
+
+    .product-content h2 {
+        font-size: 2.5rem; /* 40px for tablet */
+    }
+
+    /* Reverse order for alternating layout */
+    .product-card.product-card-reversed {
+        flex-direction: row-reverse; /* Image on right, text on left */
+    }
+
+    .product-list-section {
+        gap: var(--spacing-xxxl); /* Keep large gap between sections */
+    }
+}
+
+/* Desktop Styles (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .category-header-wrapper {
+        padding: 3.25rem 0; /* 84px for desktop */
+    }
+
+    .product-card {
+        gap: 125px; /* Larger gap for desktop */
+    }
+
+    .product-image {
+        flex: 1;
+        max-width: 540px; /* Specific width from design */
+    }
+    .product-content {
+        flex: 1;
+        max-width: 445px; /* Specific width from design */
+    }
+     .product-content h2 {
+        font-size: 2.5rem; /* Maintain 40px for desktop */
+     }
+}
