@@ -4,45 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let cart = getCart();
 
-    // const saveCart = () => {
-    //     localStorage.setItem('audiophileCart', JSON.stringify(cart));
-    //     updateCartIconCount(); // Update cart icon across all pages
-    // };
-
-    // const getCartTotalItems = () => {
-    //     return cart.reduce((total, item) => total + item.quantity, 0);
-    // };
-
-    // const updateCartIconCount = () => {
-    //     const cartItemCountSpan = document.querySelector('.cart-item-count');
-    //     if (cartItemCountSpan) {
-    //         cartItemCountSpan.textContent = getCartTotalItems();
-    //     }
-    // };
-
-    // // Call on load to ensure cart icon is updated
-    // updateCartIconCount();
-
-    // // Function to add/update product in cart (reusable from product/category pages)
-    // // You'll need to pass 'product' (from data.json) and 'quantity' to this
-    // window.addToCart = (product, quantity) => {
-    //     const existingItem = cart.find(item => item.slug === product.slug);
-    //     if (existingItem) {
-    //         existingItem.quantity += quantity;
-    //     } else {
-    //         cart.push({
-    //             slug: product.slug,
-    //             name: product.name,
-    //             price: product.price,
-    //             quantity: quantity,
-    //             image: product.image // Use mobile image for cart thumbnail
-    //         });
-    //     }
-    //     saveCart();
-    //     alert(`${quantity}x ${product.name} added to cart herre!`);
-    //     // Trigger a cart modal/dropdown update if you have one
-    // };
-
     const checkoutForm = document.getElementById('checkout-form');
     const cartItemsSummaryDiv = document.getElementById('cart-items-summary');
     const summaryTotalProductsSpan = document.getElementById('summary-total-products');
@@ -55,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderConfirmationModal = document.getElementById('order-confirmation-modal');
     const modalGrandTotalSpan = document.getElementById('modal-grand-total');
     const modalSummaryItemsList = document.querySelector('.order-summary-card .summary-items-list');
-    // const backToHomeBtn = orderConfirmationModal.querySelector('.back-to-home-btn');
     const fixedShippingCost = 50; // As per requirements
     const vatRate = 0.20; // 20% VAT
 
@@ -107,26 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
         summaryVatSpan.textContent = `$ ${Math.round(vat).toLocaleString()}`; // Round VAT for display
         summaryGrandTotalSpan.textContent = `$ ${grandTotal.toLocaleString()}`;
     };
-
-    // // --- Update Product Quantities in Cart ---
-    // const updateCartQuantity = (slug, delta) => {
-    //     const item = cart.find(i => i.slug === slug);
-    //     if (item) {
-    //         item.quantity += delta;
-    //         if (item.quantity <= 0) {
-    //             cart = cart.filter(i => i.slug !== slug); // Remove if quantity is 0 or less
-    //         }
-    //         saveCart();
-    //         renderCartSummary(); // Re-render summary to update quantities and totals
-    //     }
-    // };
-
-    // // --- Remove Products from Cart ---
-    // const removeItemFromCart = (slug) => {
-    //     cart = cart.filter(item => item.slug !== slug);
-    //     saveCart();
-    //     renderCartSummary(); // Re-render summary
-    // };
 
     // --- Payment Method Toggle ---
     paymentMethodRadios.forEach(radio => {
@@ -247,11 +187,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Form validation failed.');
         }
     });
-
-    // --- Back to Home Button in Modal ---
-    // backToHomeBtn.addEventListener('click', () => {
-    //     window.location.href = '/index.html'; // Navigate back to home page
-    // });
 
     // --- Initial rendering on page load ---
     renderCartSummary(); // Render cart items and totals when checkout page loads

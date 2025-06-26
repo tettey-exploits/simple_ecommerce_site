@@ -76,7 +76,6 @@ function clearCart() {
     hideCartModal(); // If applicable
 }
 
-// --- UI Update Functions (Examples - you'll adapt these to your specific HTML) ---
 
 /**
  * Updates the cart icon count in the header.
@@ -223,10 +222,4 @@ function renderCartPage() {
     }
 }
 
-// Ensure this is called when the cart page specifically loads
-// For the cart.html page, we'll add a specific DOMContentLoaded listener.
-// This ensures that `updateCartDisplay()` still runs on all pages for the icon count.
-// You might remove the `DOMContentLoaded` listener from `updateCartDisplay`
-// if you prefer to call it manually from each page's script.
-// For simplicity, let's keep it in `cart.js` for global icon updates.
 document.addEventListener('DOMContentLoaded', updateCartDisplay); // Keeps cart icon updated on all pages

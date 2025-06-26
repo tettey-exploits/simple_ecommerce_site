@@ -5,15 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const categoryTitleElement = document.getElementById('category-page-title');
     const productListContainer = document.getElementById('product-list-container');
     const noProductsMessage = document.getElementById('no-products-message');
-    const goBackLink = document.querySelector('.go-back-link');
-
-    // Go Back link functionality
-    if (goBackLink) {
-        goBackLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.history.back();
-        });
-    }
 
     // Function to get query parameter from URL
     function getQueryParam(param) {
@@ -34,11 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (categorySlug) {
             categoryDisplayName = capitalizeFirstLetter(categorySlug);
-        } else {
-            // If no category specified, show all or redirect, or default to a category
-            // For now, we'll just set a generic title and handle no products found.
-            console.warn("No category specified in URL. Displaying all products or a default message.");
-            // Or you could redirect: window.location.href = 'products.html?category=headphones';
         }
 
         categoryTitleElement.textContent = categoryDisplayName;

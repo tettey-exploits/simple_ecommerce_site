@@ -283,7 +283,7 @@ h3 { font-size: var(--fs-h3); }
 .navbar .cart-icon img {
     width: 1.5rem; /* 24px */
     height: auto;
-    filter: invert(1); /* To make a black icon white */
+    filter: brightness(0) invert(1);
 }
 
 
@@ -761,7 +761,6 @@ h3 { font-size: var(--fs-h3); }
         height: auto; /* Reset height */
         background-color: transparent; /* Transparent background */
         color: var(--clr-white); /* White text */
-        display: block; /* Show as block */
         padding: 0;
         z-index: auto;
         border-radius: 0;
@@ -965,7 +964,7 @@ h3 { font-size: var(--fs-h3); }
         padding-bottom: var(--spacing-md); /* 24px padding below line */
     }
     .navbar .logo {
-        margin-right: 180px; /* Exact gap as per design */
+        margin-right: auto; /* Exact gap as per design */
     }
     .navbar .nav-links ul li {
         margin-left: 35px; /* Adjust spacing */
@@ -1044,7 +1043,6 @@ h3 { font-size: var(--fs-h3); }
         background-position: center;
         background-repeat: no-repeat;
         padding: 7.25rem 0;
-        min-height: 200px; /* Make sure the section has height */
     }
 
     /* YX1 Earphones Promo */
@@ -1122,7 +1120,7 @@ body {
 .container {
     max-width: 1110px;
     margin: 0 auto;
-    padding: 0 24px; /* Default padding for mobile */
+    padding: 0; 
 }
 
 .button {
@@ -1155,13 +1153,12 @@ body {
 }
 
 .navbar {
-    max-width: 1110px;
     margin: 0 auto;
     padding: 0 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap; /* Allows wrapping on smaller screens */
+    flex-wrap: wrap;
 }
 
 .site-logo {
